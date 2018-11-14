@@ -12,6 +12,7 @@ def pre_build():
     from conans import tools
     git = tools.Git()
     branch = git.get_branch()
+    print('------------ current -----branch :'%branch)
     if not branch.startswith('testing/'):
         return
     # you can overwrit Conan enviroments as yours
