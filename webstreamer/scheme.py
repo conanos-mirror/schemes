@@ -11,8 +11,12 @@ def pre_build():
     import os
     from conans import tools
     git = tools.Git()
-    branch = git.get_branch()
-    print('------------ current -----branch :',branch)
+    branch =''
+    if os.environ.get('CI') and os.environ.get('APPVEYOR'):
+        branch = os.environ.get('APPVEYOR_REPO_BRANCH')
+    elif os.environ.get('CI') and os.environ.get('TRAVIS'):
+        branch = os.environ.get('TRAVIS_BRANCH')
+
     if not branch.startswith('testing/'):
         return
     # you can overwrit Conan enviroments as yours
