@@ -38,5 +38,14 @@ def dependencies(name,settings):
 def library_types(name, settings):
     #arch = self.settings.get('arch',None)
     #os   = self.settings.get('os',None)
+    print('settings -->',type(settings))
+    if isinstance(settings,dict):
+        compiler = settings.get('compiler')
+    else:
+        compiler = settings.compiler
+        
+    if compiler == 'Visual Studio':
+        if name in ['gmp','nettle']:
+            return 'static'
     return 'shared' # or tuple return 'shared','static'
 
