@@ -31,14 +31,20 @@ def options(name,settings,shared):
     return options
 
 def dependencies(name,settings):
+    if isinstance(settings,dict):
+        compiler = settings.get('compiler')
+    else:
+        compiler = settings.compiler
+
+    if compiler == 'gcc':
+        if name in ['gmp']:
+            return {'disable_assembly':False}
+
     deps = DEPs.get(name,{})
     return deps
 
 
 def library_types(name, settings):
-    #arch = self.settings.get('arch',None)
-    #os   = self.settings.get('os',None)
-    print('settings -->',type(settings))
     if isinstance(settings,dict):
         compiler = settings.get('compiler')
     else:
