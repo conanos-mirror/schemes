@@ -50,8 +50,8 @@ def library_types(name, settings):
     else:
         compiler = settings.compiler
         
-    if compiler == 'Visual Studio':
-        if name in ['gmp','nettle','libtasn1','gnutls']:
-            return 'static'
+    #if compiler == 'Visual Studio':
+    #    if name in ['gmp','nettle','libtasn1','gnutls']:
+    #        return 'static'
     return 'shared' # or tuple return 'shared','static'
 
